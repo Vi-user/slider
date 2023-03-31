@@ -1,0 +1,44 @@
+.gallery {
+  display: flex;
+  align-items: center;
+}
+
+.images-container {
+  background: $color-block-background;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  gap: 1rem;
+  max-width: 34rem;
+  margin: 2rem;
+}
+
+.images-container__item {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  background: #00003f;
+  object-fit: cover;
+  &_empty {
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 5rem;
+    color: #fff7f2;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+
+input[type=file] {
+  display: none;
+}
+
+.basket {
+  background: url("./assets/svg/basket.svg") no-repeat;
+  background-size: 100%;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
