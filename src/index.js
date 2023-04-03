@@ -16,15 +16,21 @@ window.onload = async function () {
   sortedImages = await getImagesList();
   if (sortedImages.length) {
     drawLastImages(sortedImages.slice(-3));
-    generalBG.firstElementChild.style.background = `url(${BASE_URL}/${sortedImages[curImgInd]})`;
+    setBgUrl(`url(${BASE_URL}/${sortedImages[curImgInd]})`);
   } else {
-    generalBG.firstElementChild.style.backgroundImage = `url('./assets/img/defaultBG.jpg')`;
+    setBgUrl(`url('./assets/img/defaultBG.jpg')`);
   }
 };
+
+const setBgUrl = (url) => {
+  generalBG.firstElementChild.style.backgroundImage = url;
+  generalBG.firstElementChild.style.backgroundSize = 'cover';
+}
 
 const changeBG = (directionCur, directionNew) => {
   // leftBtn.removeEventListener('click', addLeftClickHandler);
   // rightBtn.removeEventListener('click', addRightClickHandler);
+  if (!sortedImages.length) return;
   const сurContainer = document.querySelector('.background');
   сurContainer.classList.add(directionCur);
   const newContainer = document.createElement('div');
@@ -82,8 +88,8 @@ const userActivityHandler = () => {
   setInterval(() => {
     timer++;
     if (timer >= TIME_WITHOUT_MOVE && timer % 5 === 0) {
-      curImgInd = curImgInd === sortedImages.length - 1 ? 0 : curImgInd + 1;
-      changeBG('transition-to-left', 'transition-from-right');
+      curImgInd = (sortedImages.length - 1 <= curImgInd) ? 0 : curImgInd + 1;
+      changeBG('transition-to-up', 'transition-from-down');
     }
   }, 1000);
 };
@@ -125,7 +131,7 @@ fileInput.addEventListener('change', async (e) => {
     sortedImages.push(fileName);
     drawLastImages(sortedImages.slice(-3));
     if (sortedImages.length === 1) {
-      generalBG.firstElementChild.style.background = `url(${BASE_URL}/${sortedImages[curImgInd]})`;
+      setBgUrl(`url(${BASE_URL}/${sortedImages[curImgInd]})`);
     }
     const newToast = notification(message, 'toast_success');
     document.querySelector('body').append(newToast);
@@ -150,8 +156,7 @@ const clearGalleryHandler = async (e) => {
     document.querySelector('body').append(newToast);
     sortedImages = [];
     deleteImages();
-    generalBG.firstElementChild.style.background = `url('./assets/img/defaultBG.jpg')`;
-    generalBG.firstElementChild.style.backgroundSize = 'cover';
+    setBgUrl(`url('./assets/img/defaultBG.jpg')`);
   } else {
     const newToast = notification(responseMessage, 'toast_error');
     document.querySelector('body').append(newToast);
