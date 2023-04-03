@@ -1,9 +1,0 @@
-{
-  "id": "com.domain.app",
-  "version": "0.0.1",
-  "type": "web",
-  "main": "index.html",
-  "title": "test task",
-  "icon": "icon.png",
-  "largeIcon": "largeIcon.png"
-}

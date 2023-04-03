@@ -57,42 +57,42 @@ body {
   background: url("./assets/svg/leftarrowangleoutline_112587.svg") no-repeat;
 }
 
-@keyframes move-to-right {
-  from {left: 0px;}
-  to {left: 100%;}
+@keyframes move-to-down {
+  from {top: 0px;}
+  to {top: 100%;}
 }
 
-.transition-to-right {
-  animation-name: move-to-right;
+.transition-to-down {
+  animation-name: move-to-down;
   animation-duration: 3s;
 }
 
-@keyframes move-to-left {
-  from {left: 0px;}
-  to {left: -100%;}
+@keyframes move-to-up {
+  from {top: 0px;}
+  to {top: -100%;}
 }
 
-.transition-to-left {
-  animation-name: move-to-left;
+.transition-to-up {
+  animation-name: move-to-up;
   animation-duration: 3s;
 }
 
-@keyframes move-from-right {
-  from {left: 100%;}
-  to {left: 0;}
+@keyframes move-from-down {
+  from {top: 100%;}
+  to {top: 0;}
 }
 
-.transition-from-right {
-  animation-name: move-from-right;
+.transition-from-down {
+  animation-name: move-from-down;
   animation-duration: 3s;
 }
 
-@keyframes move-from-left {
-  from {left: -100%;}
-  to {left: 0px;}
+@keyframes move-from-up {
+  from {top: -100%;}
+  to {top: 0px;}
 }
 
-.transition-from-left {
-  animation-name: move-from-left;
+.transition-from-up {
+  animation-name: move-from-up;
   animation-duration: 3s;
 }
