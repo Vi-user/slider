@@ -4,7 +4,7 @@
 }
 
 .images-container {
-  background: $color-block-background;
+  background: $color-block-background_strong;
   padding: 1rem;
   border-radius: 8px;
   display: flex;
@@ -17,12 +17,12 @@
   width: 100px;
   height: 100px;
   border-radius: 8px;
-  background: #00003f;
+  background: $color-block-background_strong;
   object-fit: cover;
   &_empty {
-    background: rgba(0, 0, 0, 0.1);
+    background: $color-block-background_light;
     font-size: 5rem;
-    color: #fff7f2;
+    color: $color-text;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -38,7 +38,5 @@ input[type=file] {
 .basket {
   background: url("./assets/svg/basket.svg") no-repeat;
   background-size: 100%;
-  width: 100px;
-  height: 100px;
   cursor: pointer;
 }

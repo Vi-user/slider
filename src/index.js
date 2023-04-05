@@ -7,10 +7,12 @@ import { isAllowedDimensions, isImage } from './js/image_validation';
 const generalBG = document.getElementById('bg-img');
 const leftBtn = document.getElementById('btn-left');
 const rightBtn = document.getElementById('btn-right');
+const upBtn = document.getElementById('btn-up');
+const downBtn = document.getElementById('btn-down');
 let curImgInd = 0;
 let timer = 0;
 let sortedImages = [];
-const TIME_WITHOUT_MOVE = 15;
+const TIME_WITHOUT_MOVE = 5;
 
 window.onload = async function () {
   sortedImages = await getImagesList();
@@ -30,7 +32,7 @@ const setBgUrl = (url) => {
 const changeBG = (directionCur, directionNew) => {
   // leftBtn.removeEventListener('click', addLeftClickHandler);
   // rightBtn.removeEventListener('click', addRightClickHandler);
-  if (!sortedImages.length) return;
+  if (sortedImages.length <= 1) return;
   const сurContainer = document.querySelector('.background');
   сurContainer.classList.add(directionCur);
   const newContainer = document.createElement('div');
@@ -52,10 +54,27 @@ const changeBG = (directionCur, directionNew) => {
   }, 3000);
 };
 
-const addLeftClickHandler = () => {
+const addDownClickHandler = () => {
+  console.log('addDownClickHandler')
   if (sortedImages.length <= 1) return;
   curImgInd = curImgInd === 0 ? sortedImages.length - 1 : curImgInd - 1;
   changeBG('transition-to-down', 'transition-from-up');
+};
+
+downBtn.addEventListener('click', addDownClickHandler);
+
+const addUpClickHandler = () => {
+  if (sortedImages.length <= 1) return;
+  curImgInd = curImgInd === sortedImages.length - 1 ? 0 : curImgInd + 1;
+  changeBG('transition-to-up', 'transition-from-down');
+};
+
+upBtn.addEventListener('click', addUpClickHandler);
+
+const addLeftClickHandler = () => {
+  if (sortedImages.length <= 1) return;
+  curImgInd = curImgInd === 0 ? sortedImages.length - 1 : curImgInd - 1;
+  changeBG('transition-to-right', 'transition-from-left');
 };
 
 leftBtn.addEventListener('click', addLeftClickHandler);
@@ -63,7 +82,7 @@ leftBtn.addEventListener('click', addLeftClickHandler);
 const addRightClickHandler = () => {
   if (sortedImages.length <= 1) return;
   curImgInd = curImgInd === sortedImages.length - 1 ? 0 : curImgInd + 1;
-  changeBG('transition-to-up', 'transition-from-down');
+  changeBG('transition-to-left', 'transition-from-right');
 };
 
 rightBtn.addEventListener('click', addRightClickHandler);
@@ -74,12 +93,20 @@ const clearTimer = () => {
 
 const keyPressHandler = (e) => {
   if (sortedImages.length <= 1) return;
-  if (e.code === 'ArrowDown' || e.code === 'ArrowRight') {
+  if (e.code === 'ArrowRight') {
     addRightClickHandler();
     return;
   }
-  if (e.code === 'ArrowLeft' || e.code === 'ArrowUp') {
+  if (e.code === 'ArrowLeft') {
     addLeftClickHandler();
+    return;
+  }
+  if (e.code === 'ArrowDown') {
+    addDownClickHandler();
+    return;
+  }
+  if (e.code === 'ArrowUp') {
+    addUpClickHandler();
     return;
   }
 }

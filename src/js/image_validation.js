@@ -9,11 +9,13 @@ export const isImage = (file) => {
 
 async function getImageDimensions(file) {
   const img = new Image();
-  img.src = URL.createObjectURL(file);
+  img.src = window.URL.createObjectURL(file);
   await img.decode();
   const width = img.width;
   const height = img.height;
-  // URL.revokeObjectURL(img.src);
+  img.onload = function() {
+    window.URL.revokeObjectURL(this.src);
+  }
   return {
     width,
     height,

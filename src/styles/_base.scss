@@ -32,7 +32,7 @@ body {
 .button {
   position: absolute;
   z-index: 5;
-  top: 46%;
+  //top: 46%;
   height: 8%;
   width: 4%;
   min-width: 6rem;
@@ -41,20 +41,32 @@ body {
   border: none;
   background-color: inherit;
   padding: 0;
-  transition: 2s ease transform;
-  &:hover {
-    transform: scale(1.15);
-  }
 }
 
 .button__right {
+  top: 46%;
   right: 2%;
   background: url("./assets/svg/rightarrowangleoutline_112583.svg") no-repeat;
 }
 
 .button__left {
+  top: 46%;
   left: 2%;
   background: url("./assets/svg/leftarrowangleoutline_112587.svg") no-repeat;
+}
+
+.button__up {
+  top: 1%;
+  left: 46%;
+  background: url("./assets/svg/leftarrowangleoutline_112587.svg") no-repeat;
+  transform: rotate(90deg);
+}
+
+.button__down {
+  bottom: 1%;
+  left: 46%;
+  background: url("./assets/svg/rightarrowangleoutline_112583.svg") no-repeat;
+  transform: rotate(90deg);
 }
 
 @keyframes move-to-down {
@@ -94,5 +106,45 @@ body {
 
 .transition-from-up {
   animation-name: move-from-up;
+  animation-duration: 3s;
+}
+
+@keyframes move-to-right {
+  from {left: 0px;}
+  to {left: 100%;}
+}
+
+.transition-to-right {
+  animation-name: move-to-right;
+  animation-duration: 3s;
+}
+
+@keyframes move-to-left {
+  from {left: 0px;}
+  to {left: -100%;}
+}
+
+.transition-to-left {
+  animation-name: move-to-left;
+  animation-duration: 3s;
+}
+
+@keyframes move-from-right {
+  from {left: 100%;}
+  to {left: 0;}
+}
+
+.transition-from-right {
+  animation-name: move-from-right;
+  animation-duration: 3s;
+}
+
+@keyframes move-from-left {
+  from {left: -100%;}
+  to {left: 0px;}
+}
+
+.transition-from-left {
+  animation-name: move-from-left;
   animation-duration: 3s;
 }
